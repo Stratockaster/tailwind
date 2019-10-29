@@ -12,7 +12,7 @@ defmodule Tailwind.Application do
       TailwindWeb.Endpoint,
       # Starts a worker by calling: Tailwind.Worker.start_link(arg)
       # {Tailwind.Worker, arg},
-      {Tailwind.Strava.TokenRefresher, 
+      {Tailwind.Strava.TokenRefresher,
         %{
           client_id: System.fetch_env!("STRAVA_CLIENT_ID"),
           client_secret: System.fetch_env!("STRAVA_CLIENT_SECRET"),

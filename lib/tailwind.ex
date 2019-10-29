@@ -7,9 +7,9 @@ defmodule Tailwind do
   if it comes from the database, an external API or others.
   """
 
+  alias Tailwind.SegmentFetcher
   alias Tailwind.Point
   alias Tailwind.WeatherFetcher
-  alias Tailwind.SegmentFetcher
 
   def get_rated_segments({lat, lon}) do
     point = %Point{latitude: lat, longitude: lon}
@@ -18,7 +18,7 @@ defmodule Tailwind do
     get_segments_task = Task.async(fn -> SegmentFetcher.get_segments(point) end)
 
     weather = Task.await(get_weather_task)
-    segments = Task.await(get_segments_task)
+    segments = Task.await(get_segments_task, 10_000)
 
     %{
       weather: weather,
