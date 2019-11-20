@@ -1,9 +1,9 @@
-FROM elixir:1.9.2
+FROM elixir:1.9.4
 
-RUN mix local.hex --force && mix archive.install hex phx_new 1.4.10 --force
+RUN mix local.hex --force && mix archive.install hex phx_new 1.4.11 --force
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - && apt-get install -y nodejs && rm -rf /var/cache/apk/*
 
-WORKDIR /tailwind
+WORKDIR /app
 
 RUN mix local.hex --force && mix local.rebar --force
