@@ -49,7 +49,10 @@ defmodule Tailwind.MixProject do
       {:httpoison, "~> 1.6"},
       {:geocalc, "~> 0.5"},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
+      {:mock, "~> 0.3.0", only: :test},
+      {:bypass, "~> 1.0", only: :test},
+      {:plug, "~> 1.8"}
     ]
   end
 end

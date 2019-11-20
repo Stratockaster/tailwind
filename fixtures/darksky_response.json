@@ -1,0 +1,37 @@
+{
+   "latitude":53.914152,
+   "longitude":27.523715,
+   "timezone":"Europe/Minsk",
+   "currently":{
+      "time":1572608927,
+      "summary":"Mostly Cloudy",
+      "icon":"partly-cloudy-day",
+      "precipIntensity":0.0007,
+      "precipProbability":0.08,
+      "precipType":"rain",
+      "temperature":40.63,
+      "apparentTemperature":35.06,
+      "dewPoint":35.21,
+      "humidity":0.81,
+      "pressure":1021.1,
+      "windSpeed":8.58,
+      "windGust":16.6,
+      "windBearing":277,
+      "cloudCover":0.66,
+      "uvIndex":1,
+      "visibility":6.16,
+      "ozone":298.1
+   },
+   "flags":{
+      "sources":[
+         "cmc",
+         "gfs",
+         "icon",
+         "isd",
+         "madis"
+      ],
+      "nearest-station":3.532,
+      "units":"us"
+   },
+   "offset":3
+}

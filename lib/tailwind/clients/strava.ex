@@ -8,7 +8,7 @@ defmodule Tailwind.Strava do
   @expected_fields ~w(segments)
 
   def process_request_url(url) do
-    "https://www.strava.com/api/v3/segments/explore" <> url
+    Application.get_env(:tailwind, :strava_api_url) <> url
   end
 
   def process_request_headers(_headers) do
@@ -24,5 +24,6 @@ defmodule Tailwind.Strava do
     body
     |> Poison.decode!
     |> Map.take(@expected_fields)
+    |> Map.get("segments")
   end
 end

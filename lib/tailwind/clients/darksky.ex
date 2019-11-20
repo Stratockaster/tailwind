@@ -6,12 +6,13 @@ defmodule Tailwind.Darksky do
   @expected_fields ~w(currently)
 
   def process_request_url(url) do
-    "https://api.darksky.net/forecast/e3a2a08e9c4ab09f4718c2fbe8aeb48c" <> url
+    Application.get_env(:tailwind, :darksky_api_url) <> url
   end
 
   def process_response_body(body) do
     body
     |> Poison.decode!
     |> Map.take(@expected_fields)
+    |> Map.get("currently")
   end
 end

@@ -14,6 +14,10 @@ config :tailwind, TailwindWeb.Endpoint,
   render_errors: [view: TailwindWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Tailwind.PubSub, adapter: Phoenix.PubSub.PG2]
 
+config :tailwind,
+  strava_api_url: "https://www.strava.com/api/v3/segments/explore",
+  darksky_api_url: "https://api.darksky.net/forecast/e3a2a08e9c4ab09f4718c2fbe8aeb48c"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
