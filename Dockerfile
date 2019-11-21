@@ -45,9 +45,9 @@ WORKDIR /app
 
 COPY --from=build /app/_build/prod/rel/tailwind ./
 COPY .env ./
-COPY ./entrypoint.sh ./
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+# COPY ./entrypoint.sh ./
+# RUN chmod +x entrypoint.sh
+# ENTRYPOINT ["./entrypoint.sh"]
 RUN chown -R nobody: /app
 USER nobody
 
