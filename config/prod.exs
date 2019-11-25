@@ -14,7 +14,17 @@ config :tailwind, TailwindWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger,
+  backends: [{LoggerFileBackend, :info},
+             {LoggerFileBackend, :error}]
+
+config :logger, :info,
+  path: "/var/log/tailwind/info.log",
+  level: :info
+
+config :logger, :error,
+  path: "/var/log/tailwind/error.log",
+  level: :error
 
 # ## SSL Support
 #

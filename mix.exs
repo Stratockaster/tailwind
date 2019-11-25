@@ -38,7 +38,7 @@ defmodule Tailwind.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.10"},
+      {:phoenix, "~> 1.4.11"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -52,7 +52,8 @@ defmodule Tailwind.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:mock, "~> 0.3.0", only: :test},
       {:bypass, "~> 1.0", only: :test},
-      {:plug, "~> 1.8"}
+      {:plug, "~> 1.8"},
+      {:logger_file_backend, "~> 0.0.10"}
     ]
   end
 end
