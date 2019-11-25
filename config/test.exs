@@ -7,6 +7,7 @@ config :tailwind, TailwindWeb.Endpoint,
   server: false
 
 config :tailwind,
+  strava_tokens_url: "http://localhost:1336",
   strava_api_url: "http://localhost:1337",
   darksky_api_url: "http://localhost:1338"
 

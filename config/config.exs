@@ -15,6 +15,7 @@ config :tailwind, TailwindWeb.Endpoint,
   pubsub: [name: Tailwind.PubSub, adapter: Phoenix.PubSub.PG2]
 
 config :tailwind,
+  strava_tokens_url: "https://www.strava.com/api/v3/oauth/token",
   strava_api_url: "https://www.strava.com/api/v3/segments/explore",
   darksky_api_url: "https://api.darksky.net/forecast/e3a2a08e9c4ab09f4718c2fbe8aeb48c"
 

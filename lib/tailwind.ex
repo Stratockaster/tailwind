@@ -32,7 +32,11 @@ defmodule Tailwind do
 
     normalized_segments = segments
       |> Stream.map(fn segment -> Map.put(segment, "bearing", calculate_segment_bearing(segment)) end)
-      |> Stream.map(fn segment -> %{segment: segment, deflection: calculate_bearing_delta(segment["bearing"], wind_bearing_inversed)} end)
+      |> Stream.map(fn segment -> 
+        %{
+          segment: segment,
+          deflection: calculate_bearing_delta(segment["bearing"], wind_bearing_inversed)
+        } end)
       |> Enum.map(&(&1))
 
     %{
@@ -44,7 +48,12 @@ defmodule Tailwind do
   @spec get_weather(%Point{}) :: map()
   def get_weather(%Point{latitude: lat, longitude: lon}) do
     Tailwind.Darksky.start
-    Tailwind.Darksky.get!("/#{lat},#{lon}?exclude=minutely,hourly,daily,alerts").body
+    case Tailwind.Darksky.get("/#{lat},#{lon}?exclude=minutely,hourly,daily,alerts") do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        body
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        raise reason
+    end
   end
 
   @spec get_segments(Point.t()) :: map()

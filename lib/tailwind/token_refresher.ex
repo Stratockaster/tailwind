@@ -4,7 +4,7 @@ defmodule Tailwind.Strava.TokenRefresher do
   use GenServer
 
   def start_link(initial_settings) do
-    GenServer.start_link(__MODULE__, initial_settings, name: TokenRefresher)
+    GenServer.start_link(__MODULE__, initial_settings, name: :token_refresher)
   end
 
   @impl true
@@ -34,7 +34,7 @@ defmodule Tailwind.Strava.TokenRefresher do
   end
 
   def get_settings do
-    GenServer.call(TokenRefresher, :get)
+    GenServer.call(:token_refresher, :get)
   end
 
   defp schedule_work_immediately do
@@ -48,11 +48,13 @@ defmodule Tailwind.Strava.TokenRefresher do
   defp query_new_tokens(settings) do
     %{client_id: client_id, client_secret: client_secret, refresh_token: refresh_token} = settings
 
-    {:ok, response} = HTTPoison.post "https://www.strava.com/api/v3/oauth/token",
+    query_result = HTTPoison.post Application.get_env(:tailwind, :strava_tokens_url),
     "{\"client_id\": \"#{client_id}\", \"client_secret\": \"#{client_secret}\", \"grant_type\": \"refresh_token\", \"refresh_token\": \"#{refresh_token}\"}",
     [{"Content-Type", "application/json"}]
 
-    response
+    case query_result do
+      {:ok, response} -> response
+    end
   end
 
   defp atomic_map(map) do
